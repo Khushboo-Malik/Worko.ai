@@ -2,7 +2,7 @@ const request = require('supertest');
 const app = require('../src/app'); // Ensure your Express app is exported from this file
 const User = require('../src/models/user');
 
-describe('User API', () => {
+/*describe('User API', () => {
   let server;
 
   beforeAll(() => {
@@ -16,7 +16,7 @@ describe('User API', () => {
   afterEach(async () => {
     await User.deleteMany();
   });
-});
+});*/
 
   describe('GET /api/worko/user', () => {
     it('should list users', async () => {
@@ -36,14 +36,14 @@ describe('User API', () => {
           zipCode: '12345'
         });
         await user.save();
-        const res = await request(server).get(`/api/worko/user/${user._id}`);
+        const res = await request(server).get(`/api/worko/user/${user.id}`);
         expect(res.statusCode).toEqual(200);
-        expect(res.body).toHaveProperty('_id', user._id.toString()); // Convert ObjectId to string
+        expect(res.body).toHaveProperty('id', user.id.toString()); // Convert ObjectId to string
         expect(res.body).toHaveProperty('email', 'test@example.com');
       });
     });
       
-  describe('POST /api/worko/user', () => {
+  describe('POST /api/worko/user_create', () => {
     it('should create a new user', async () => {
         const res = await request(server)
           .post('/api/worko/user')
@@ -55,7 +55,7 @@ describe('User API', () => {
             zipCode: '12345'
           });
         expect(res.statusCode).toEqual(201); // Ensure the correct status code
-        expect(res.body).toHaveProperty('_id');
+        expect(res.body).toHaveProperty('id');
         expect(res.body).toHaveProperty('email', 'test@example.com');
       });
     });
@@ -71,7 +71,7 @@ describe('User API', () => {
         });
         await user.save();
         const res = await request(server)
-          .put(`/api/worko/user/${user._id}`)
+          .put(`/api/worko/user/${user.id}`)
           .send({
             name: 'Updated User',
             age: 30, // Ensure this is a number in your MongoDB schema
@@ -82,6 +82,7 @@ describe('User API', () => {
         expect(res.body).toHaveProperty('age', 30); // Ensure numeric value
         expect(res.body).toHaveProperty('city', 'Updated City');
       });
+    });
       
   describe('PATCH /api/worko/user/:userId', () => {
     it('should partially update user details', async () => {
@@ -94,7 +95,7 @@ describe('User API', () => {
       });
       await user.save();
       const res = await request(server)
-        .patch(`/api/worko/user/${user._id}`)
+        .patch(`/api/worko/user/${user.id}`)
         .send({
           city: 'Updated City'
         });
@@ -113,10 +114,10 @@ describe('User API', () => {
         zipCode: '12345'
       });
       await user.save();
-      const res = await request(server).delete(`/api/worko/user/${user._id}`);
+      const res = await request(server).delete(`/api/worko/user/${user.id}`);
       expect(res.statusCode).toEqual(200);
-      const deletedUser = await User.findById(user._id);
+      const deletedUser = await User.findById(user.id);
       expect(deletedUser.isDeleted).toBe(true);
     });
   });
-});
+
