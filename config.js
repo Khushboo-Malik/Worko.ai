@@ -1,15 +1,19 @@
-const mongoose = require("mongoose");
-//require('dotenv').config();
-const dotenv = require("dotenv");
-dotenv.config();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-const mongo_url=process.env.MONGODB_URL;
+// Load environment variables based on the environment
+dotenv.config({ path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env' });
+
+const mongo_url = process.env.MONGODB_URL;
 
 const connectDB = async () => {
   try {
     console.log("Connecting to DB");
-    const conn = await mongoose.connect("mongodb://127.0.0.1:27017/Career_Guidance_Portal");
-    console.log("MongoDB connected");
+    const conn = await mongoose.connect(mongo_url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(`MongoDB connected to ${mongo_url}`);
   } catch (error) {
     console.error("MongoDB error", error);
   }
