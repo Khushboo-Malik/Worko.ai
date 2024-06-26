@@ -1,17 +1,17 @@
-# Worko.ai - Job Seeker Portal
+# Worko.ai - Job Seeker Portal✨
 
-## Description
+## Description📄
 
 Worko is a Node.js project designed to assist job seekers in requesting referrals from companies they wish to work with. The platform also offers various services such as resume reviews, interview handholding, career guidance, and mock interviews. The backend API is built using Node.js, Express, and MongoDB, following an MVC architecture.
 
-## Features
+## Features🚀
 
 - User Management: Create, list, update, and soft delete users.
 - Validation: Ensures correct data formats for fields like email  and zip code
 - Partial Updates: Supports PATCH requests for updating specific fields
 - MVC Architecture: Separation of concerns with Controllers, Services, DAOs, Models, DTOs, and Validators
 
-## Technologies Used
+## Technologies Used🛠️
 
 - Node.js
 - Express.js
@@ -20,7 +20,7 @@ Worko is a Node.js project designed to assist job seekers in requesting referral
 - Mongoose for MongoDB object modeling
 - Dotenv for storing and configuring env. variables
 
-## Installation
+## Installation💻
 
 1. **Clone the repository:**
 
@@ -49,13 +49,13 @@ Worko is a Node.js project designed to assist job seekers in requesting referral
   npm start
 ```
 
-## Usage
+## Usage🧑‍💻
 
 1.Use tools like Postman or curl to interact with the API.
 2.Perform operations like creating, listing, updating, and deleting users.
 3.Validate input data to ensure correct format
 
-## Environment Variables
+## Environment Variables🌐
 
 Make sure to set the required environment variables in your `.env` file. Here's an example of what your `.env` file might look like:
 
